@@ -1,4 +1,5 @@
-/*
+package vue;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -17,4 +18,3 @@ public class PanelFormulaire extends JPanel{
 	private JLabel descriptif;
 	private JTextArea saisieDescriptif;
 }
-*/
