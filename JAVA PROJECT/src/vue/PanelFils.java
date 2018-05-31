@@ -16,8 +16,8 @@ public class PanelFils extends JPanel implements ActionListener{
 	JButton boutonGauche = new JButton("<");
 	JButton boutonDroite = new JButton(">");
 	PanelTitre panelTitre = new PanelTitre("Titre");
-	PanelFrise panelFrise = new PanelFrise();
 	JPanel panelDiapo = new JPanel();
+	PanelFrise panelFrise;
 	
 	
 	Evenement evenementCourant;
@@ -25,6 +25,8 @@ public class PanelFils extends JPanel implements ActionListener{
 	public int chNombreDiapo;
 	
 	public PanelFils(Chronologie parChrono){
+		PanelFrise panelFrise = new PanelFrise(parChrono);
+		
 		setLayout(new BorderLayout());
 		panelDiapo.setLayout(gestionnaire);
 		

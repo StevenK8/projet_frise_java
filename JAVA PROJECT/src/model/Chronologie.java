@@ -35,5 +35,17 @@ public class Chronologie {
 		}
 		return null;
 	}
+	public int getDuree() {
+		if (chFin.getAnnee()>chDebut.getAnnee())
+			return chFin.getAnnee()-chDebut.getAnnee()+1;
+		System.out.println("Année de fin antérieure à l'année de début (exception à construire)");
+		return 1;
+	}
+	public int getPas() {
+		return chPas;
+	}
+	public int getDebut() {
+		return chDebut.getAnnee();
+	}
 	
 }

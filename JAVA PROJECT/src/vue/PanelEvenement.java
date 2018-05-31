@@ -29,7 +29,7 @@ public class PanelEvenement extends JPanel{
 		ImageIcon imageIcon = new ImageIcon(imageLink);
 		File f = new File(imageLink);
 		if(f.isFile() && !f.isDirectory()) { 
-			chImage.setText("");
+			chImage.setText(""); // Si l'image existe, on retire "image"
 		}
 		
 		

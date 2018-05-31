@@ -62,4 +62,8 @@ public class Evenement implements Comparable<Evenement>{
     public Date getDate() {
         return chDate;
     }
+
+	public int getPoids() {
+		return chPoids;
+	}
 }
