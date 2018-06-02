@@ -39,8 +39,9 @@ public class PanelFormulaire extends JPanel{
 		titre = new JLabel("Titre :");
 		position.gridx = 0;
 		position.gridy = 1;
+		position.gridwidth = 1;
 		add(titre, position);
-		saisieTitre = new JTextField();
+		saisieTitre = new JTextField(15);
 		position.gridx = 1;
 		position.gridwidth = 3;
 		add(saisieTitre, position);
@@ -62,7 +63,7 @@ public class PanelFormulaire extends JPanel{
 		position.gridx = 0;
 		position.gridy = 3;
 		add(descriptif, position);
-		saisieDescriptif = new JTextArea();
+		saisieDescriptif = new JTextArea(1, 15);
 		position.gridx = 1;
 		position.gridwidth = 3;
 		add(saisieDescriptif, position);
