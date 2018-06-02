@@ -9,7 +9,7 @@ public class Evenement implements Comparable<Evenement>{
     private static int chNbEvt = 0;
 
     public String toString() {
-        return chDate.toString() + " Nom: " + chNom + " Poids: " + chPoids + " image: " + chImage + " Texte: " + chTexte;
+        return chDate.toString() + " NOM: " + chNom + " POIDS: " + chPoids + " IMAGE: " + chImage + " TEXTE: " + chTexte;
     }
 
     public Evenement(String parNom, Date parDate, String parTexte, String parImage, int parPoids) {

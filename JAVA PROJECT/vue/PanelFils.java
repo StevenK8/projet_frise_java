@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.*;
 
@@ -25,7 +24,7 @@ public class PanelFils extends JPanel implements ActionListener{
 	public int chNombreDiapo;
 	
 	public PanelFils(Chronologie parChrono){
-		PanelFrise panelFrise = new PanelFrise(parChrono);
+		PanelFrise panelFrise = new PanelFrise(parChrono,gestionnaire,panelDiapo);
 		
 		setLayout(new BorderLayout());
 		panelDiapo.setLayout(gestionnaire);
@@ -39,8 +38,7 @@ public class PanelFils extends JPanel implements ActionListener{
 		for (int i=0; i<chNombreDiapo; i++){
 			evenementCourant = parChrono.getEvt(i);
 			panelEvenement[i] = new PanelEvenement(evenementCourant.getNom(),evenementCourant.getText(),evenementCourant.getDate().toString(),evenementCourant.getImg());
-			panelDiapo.add(panelEvenement[i], i+"");
-			System.out.println(i);
+			panelDiapo.add(panelEvenement[i], evenementCourant.toString());
 		}
 		
 		//Placement des composants dans le Panel

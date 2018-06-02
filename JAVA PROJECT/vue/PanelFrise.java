@@ -1,12 +1,11 @@
 package vue;
 
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,10 +16,11 @@ import model.Chronologie;
 import model.Evenement;
 
 public class PanelFrise extends JPanel {
-	
-	public PanelFrise(Chronologie parChrono){
-		TableFrise modele = new TableFrise(parChrono);
-		JTable tableFrise = new JTable(modele);
+	TableFrise modele;
+	final JTable tableFrise;
+	public PanelFrise(Chronologie parChrono,final CardLayout gestionnaire,final JPanel panelDiapo){
+		modele = new TableFrise(parChrono);
+		tableFrise = new JTable(modele);
 		
 		// Format des Intitulés
 		tableFrise.getTableHeader().setBackground(new java.awt.Color(45, 35, 66));
@@ -41,19 +41,21 @@ public class PanelFrise extends JPanel {
 			tableFrise.getColumnModel().getColumn(i).setPreferredWidth(120); // Largeur des colonnes
 		}
 		
-		/*
-		tableFrise.addMouseListener(new MouseAdapter(){
-			public void MouseClicked(MouseEvent evt) {
-				JTable table = (JTable) evt.getSource();
-				TableFrise model = (TableFrise)table.getModel();
-				Point point = evt.getPoint();
-				int rowIndex = table.rowAtPoint(point);
-				int colIndex = table.columnAtPoint(point);
-				JOptionPane.showMessageDialog(table, model.getValueAt(rowIndex, colIndex));
+		//Case cliquée
+		tableFrise.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				Evenement selected = null;
+				if (e.getClickCount() == 1) { // Nombre de clics à effectuer
+					JTable target = (JTable)e.getSource();
+					int row = target.getSelectedRow();
+					int column = target.getSelectedColumn();
+					selected = (Evenement) tableFrise.getValueAt(row, column);
+					gestionnaire.show(panelDiapo,selected.toString());
+					// chIndex = ...;
+				}
 			}
 		});
-		*/
-		
+
 		// Ajout d'un renderer
 		tableFrise.setDefaultRenderer(Evenement.class, new CelluleRenderer());
 		
