@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.io.File;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -30,7 +31,12 @@ public class CelluleRenderer extends DefaultTableCellRenderer {
 		if (value!=null) {
 			String img = ((Evenement)value).getImg();
 			System.out.println(img);
-			setIcon(new ImageIcon(getClass().getResource("images/"+img+".jpg")));
+			File fichierImage = new File("images/"+img+".png");
+			if (fichierImage.isFile()) {
+				setIcon(new ImageIcon(getClass().getResource("images/"+img+".png")));
+			}else if ((fichierImage = new File("images/"+img+".png")).isFile()){
+				setIcon(new ImageIcon(getClass().getResource("images/"+img+".jpg")));
+			}
 		}else {
 			setIcon(null);
 		}

@@ -21,13 +21,14 @@ public class PanelFils extends JPanel implements ActionListener{
 	JLabel panelTitre = new JLabel("Titre",SwingConstants.CENTER);
 	JPanel panelDiapo = new JPanel();
 	PanelFrise panelFrise;
-	
+	Chronologie chCronologie;
 	Evenement evenementCourant;
 	int chIndex = 0;
 	int chNombreDiapo;
 	
 	public PanelFils(Chronologie parChrono){
-		PanelFrise panelFrise = new PanelFrise(parChrono,gestionnaire,panelDiapo);
+		chCronologie = parChrono;
+		PanelFrise panelFrise = new PanelFrise(chCronologie,gestionnaire,panelDiapo);
 		setLayout(new BorderLayout());
 		panelDiapo.setLayout(gestionnaire);
 		panelTitre.setFont(new Font("Century Gothic",Font.BOLD,20));
@@ -35,11 +36,11 @@ public class PanelFils extends JPanel implements ActionListener{
 		boutonGauche.addActionListener(this);
 		boutonDroite.addActionListener(this);
 		
-		chNombreDiapo = parChrono.getEvts().size();
+		chNombreDiapo = chCronologie.getEvts().size();
 		PanelEvenement [] panelEvenement = new PanelEvenement[chNombreDiapo];
 
 		for (int i=0; i<chNombreDiapo; i++){
-			evenementCourant = parChrono.getEvt(i);
+			evenementCourant = chCronologie.getEvt(i);
 			panelEvenement[i] = new PanelEvenement(evenementCourant.getNom(),evenementCourant.getText(),evenementCourant.getDate().toString(),evenementCourant.getImg());
 			panelDiapo.add(panelEvenement[i], evenementCourant.toString());
 		}
@@ -50,6 +51,10 @@ public class PanelFils extends JPanel implements ActionListener{
 		add(boutonGauche, BorderLayout.WEST);
 		add(boutonDroite, BorderLayout.EAST);
 		add(panelDiapo, BorderLayout.CENTER);
+	}
+	
+	public Chronologie getChrono() {
+		return chCronologie;
 	}
 
 	public void actionPerformed (ActionEvent parEvt) {

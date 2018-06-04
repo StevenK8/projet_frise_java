@@ -27,12 +27,21 @@ public class Chronologie {
 		return chSave;
 	}
 	
+	public String toString() {
+		String evts = new String();
+		Iterator<Evenement> it = chEvts.iterator();
+		while (it.hasNext()) {
+			Evenement e = it.next();
+			evts += e.toString()+"§";
+		}
+		return chNom+"§"+chDebut+"§"+chFin+"§"+chPas+"§"+chSave+"§"+evts;
+	}
+	
 	public Evenement getEvt(int parIndice){
 		int i=0;
 		Iterator<Evenement> it = chEvts.iterator();
 		while (it.hasNext()) {
 			Evenement e = it.next();
-			
 			if (i==parIndice)
 				return e;
 			i++;

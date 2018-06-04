@@ -1,10 +1,8 @@
 package vue;
 
 import java.awt.Image;
-
-import javax.swing.Icon;
+import java.io.File;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 import model.Chronologie;
@@ -18,15 +16,21 @@ public class TableFrise extends DefaultTableModel{
 		String[] colIntitules = new String[parChrono.getDuree()];
 		for (int i=0; i<parChrono.getDuree();i++) { // Pour chaque pas de colonnes
 			if(i%parChrono.getPas()==0)// À chaque pas
-				colIntitules[i] = Integer.toString(parChrono.getDebut()+i); // On ajoute la date correspondate à l'intitulé
+				colIntitules[i] = Integer.toString(parChrono.getDebut()+i); // On ajoute la date correspondante a�l'intitule
 			else
 				colIntitules[i] = ""; // Sinon on la laisse vide
 		}
 		this.setColumnIdentifiers(colIntitules);
 		
-		for(int j=0; j<parChrono.getEvts().size();j++) { //Ajout des événements à la JTable 
+		for(int j=0; j<parChrono.getEvts().size();j++) { //Ajout des événements à la JTable
+			ImageIcon imageIcon = new ImageIcon();
 			evenementCourant = parChrono.getEvt(j);
-			ImageIcon imageIcon = new ImageIcon("images/"+evenementCourant.getImg()+".jpg");
+			File fichierImage = new File("images/"+evenementCourant.getImg()+".png");
+			if (fichierImage.isFile()) {
+				imageIcon = new ImageIcon("images/"+evenementCourant.getImg()+".png");
+			}else if ((fichierImage = new File("images/"+evenementCourant.getImg()+".jpg")).isFile()){
+				imageIcon = new ImageIcon("images/"+evenementCourant.getImg()+".jpg");
+			}
 			Image image = imageIcon.getImage();
 			Image scaledImage = image.getScaledInstance(150, 110,  java.awt.Image.SCALE_SMOOTH);
 			imageIcon = new ImageIcon(scaledImage,evenementCourant.toString());
