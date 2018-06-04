@@ -23,6 +23,10 @@ public class Chronologie {
 		return chEvts;
 	}
 	
+	public String getSave() {
+		return chSave;
+	}
+	
 	public Evenement getEvt(int parIndice){
 		int i=0;
 		Iterator<Evenement> it = chEvts.iterator();
