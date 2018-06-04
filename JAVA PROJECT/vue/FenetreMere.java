@@ -4,10 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.TreeSet;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.KeyStroke;
 
+import controleur.Controleur;
 import model.*;
 
 public class FenetreMere extends JFrame implements ActionListener {
@@ -18,21 +23,54 @@ public class FenetreMere extends JFrame implements ActionListener {
     	test.add(bob);
     	test.add(bob2);
     	Chronologie chrono1 = new Chronologie("Fabrice",test, new Date(5,8,1985),new Date(11,9,2005),5,"save");
-        JPanel contentPane = new PanelFils(chrono1);
+        PanelFils contentPane = new PanelFils(chrono1);
+        
+        //Barre des menus
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-        JMenuItem creation = new JMenuItem("Création");
-        //creation.addActionListener(contentPane);
-        JMenuItem affichage = new JMenuItem("Affichage");
-        //affichage.addActionListener(contentPane);
-        JMenuItem fermer = new JMenuItem("Fermer");
-        //fermer.addActionListener(contentPane);
+        //Creation
+        JMenu creation = new JMenu("Création");
+        JMenuItem nouveau = new JMenuItem("Nouveau",'N');
+        JMenuItem save = new JMenuItem("Sauvegarder",'S');
+        nouveau.addActionListener(this);
+        save.addActionListener(this);
+        nouveau.setActionCommand("new");
+        save.setActionCommand("save");
+        nouveau.setAccelerator(KeyStroke.getKeyStroke('N', java.awt.Event.CTRL_MASK));
+        save.setAccelerator(KeyStroke.getKeyStroke('S', java.awt.Event.CTRL_MASK));
+        creation.add(nouveau);
+        creation.add(save);
+        
+        //Affichage
+        JMenu affichage = new JMenu("Affichage");
+        JMenuItem settings = new JMenuItem("Paramètres",'P');
+        settings.addActionListener(this);
+        settings.setActionCommand("settings");
+        affichage.add(settings);
+        
+        //Fermer
+        JMenu fermer = new JMenu("Fermer");
+        JMenuItem close = new JMenuItem("Fermer la fenêtre",'F');
+        close.addActionListener(this);
+        close.setActionCommand("exit");
+        fermer.add(close);
+        fermer.addActionListener(contentPane);
+        
+        //Aide
+        JMenu aide = new JMenu("?");
+        JMenuItem help = new JMenuItem("Afficher l'aide",'A');
+        help.addActionListener(this);
+        help.setActionCommand("help");
+        help.setAccelerator(KeyStroke.getKeyStroke('A', java.awt.Event.CTRL_MASK));
+        aide.add(help);
+        
         menuBar.add(creation);
         menuBar.add(affichage);
         menuBar.add(fermer);
+        menuBar.add(aide);
         setContentPane(contentPane);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1280, 720);
+        setSize(1280, 800);
         setVisible(true);
         setLocation(0, 0);
         setTitle("Frise chronologique - Kerautret Steven - Brasset Alexis");
@@ -42,8 +80,28 @@ public class FenetreMere extends JFrame implements ActionListener {
         new FenetreMere();
     }
 
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand()=="new") {
+			PanelFormulaire panelFormulaire = new PanelFormulaire();
+			JFrame fenetreFormulaire = new JFrame();
+			fenetreFormulaire.setContentPane(panelFormulaire);
+			fenetreFormulaire.setDefaultCloseOperation(HIDE_ON_CLOSE);
+			fenetreFormulaire.setSize(300, 200);
+			fenetreFormulaire.setVisible(true);
+			fenetreFormulaire.setLocation(0, 0);
+			fenetreFormulaire.setTitle("Nouvelle frise");
+		}
+		if(e.getActionCommand()=="save") {
+			System.out.println("save");
+		}
+		if(e.getActionCommand()=="settings") {
+			System.out.println("settings");
+		}
+		if(e.getActionCommand()=="exit") {
+			System.out.println("exit");
+		}
+		if(e.getActionCommand()=="help") {
+			System.out.println("help");
+		}
 	}
 }

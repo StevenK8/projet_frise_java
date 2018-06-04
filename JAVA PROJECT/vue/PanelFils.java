@@ -2,11 +2,15 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
 import model.*;
 
 public class PanelFils extends JPanel implements ActionListener{
@@ -14,20 +18,19 @@ public class PanelFils extends JPanel implements ActionListener{
 	CardLayout gestionnaire = new CardLayout();
 	JButton boutonGauche = new JButton("<");
 	JButton boutonDroite = new JButton(">");
-	PanelTitre panelTitre = new PanelTitre("Titre");
+	JLabel panelTitre = new JLabel("Titre",SwingConstants.CENTER);
 	JPanel panelDiapo = new JPanel();
 	PanelFrise panelFrise;
 	
-	
 	Evenement evenementCourant;
 	int chIndex = 0;
-	public int chNombreDiapo;
+	int chNombreDiapo;
 	
 	public PanelFils(Chronologie parChrono){
 		PanelFrise panelFrise = new PanelFrise(parChrono,gestionnaire,panelDiapo);
-		
 		setLayout(new BorderLayout());
 		panelDiapo.setLayout(gestionnaire);
+		panelTitre.setFont(new Font("Century Gothic",Font.BOLD,20));
 		
 		boutonGauche.addActionListener(this);
 		boutonDroite.addActionListener(this);

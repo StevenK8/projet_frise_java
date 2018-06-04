@@ -5,14 +5,15 @@ import java.awt.event.ActionListener;
 
 import model.Evenement;
 import vue.PanelFils;
+import vue.PanelFrise;
 
 public class Controleur implements ActionListener{
 	PanelFils panelFils;
-	Evenement chEvenement;
+	PanelFrise panelFrise;
 	
-	public Controleur(PanelFils parPanelFils, Evenement parEvenement) {
+	public Controleur(PanelFils parPanelFils, PanelFrise parPanelFrise) {
 		panelFils = parPanelFils;
-		chEvenement = parEvenement;
+		panelFrise = parPanelFrise;
 		
 		
 		//panelFils.enregistreEcouteur(this);

@@ -1,5 +1,10 @@
 package vue;
 
+import java.awt.Image;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 import model.Chronologie;
@@ -21,14 +26,18 @@ public class TableFrise extends DefaultTableModel{
 		
 		for(int j=0; j<parChrono.getEvts().size();j++) { //Ajout des événements à la JTable 
 			evenementCourant = parChrono.getEvt(j);
-			setValueAt(evenementCourant,evenementCourant.getPoids(),evenementCourant.getDate().getAnnee()-parChrono.getDebut());
+			ImageIcon imageIcon = new ImageIcon("images/"+evenementCourant.getImg()+".jpg");
+			Image image = imageIcon.getImage();
+			Image scaledImage = image.getScaledInstance(150, 110,  java.awt.Image.SCALE_SMOOTH);
+			imageIcon = new ImageIcon(scaledImage,evenementCourant.toString());
+			setValueAt(imageIcon,evenementCourant.getPoids(),evenementCourant.getDate().getAnnee()-parChrono.getDebut());
 		}
 	}
 	
 	public boolean isCellEditable(int indiceLigne, int indiceColonne) {
 		return false;
-	}/*
+	}
 	public Class<?> getColumnClass(int parNum) {
-		return Evenement.class;
-	}*/
+		return ImageIcon.class;
+	}
 }

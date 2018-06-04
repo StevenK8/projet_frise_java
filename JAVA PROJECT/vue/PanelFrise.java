@@ -6,11 +6,12 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
-
 
 import model.Chronologie;
 import model.Evenement;
@@ -18,9 +19,14 @@ import model.Evenement;
 public class PanelFrise extends JPanel {
 	TableFrise modele;
 	final JTable tableFrise;
-	public PanelFrise(Chronologie parChrono,final CardLayout gestionnaire,final JPanel panelDiapo){
+	CardLayout gestionnaire;
+	JPanel panelDiapo;
+	
+	public PanelFrise(Chronologie parChrono,CardLayout parGestionnaire,JPanel parPanelDiapo){
 		modele = new TableFrise(parChrono);
 		tableFrise = new JTable(modele);
+		gestionnaire = parGestionnaire;
+		panelDiapo = parPanelDiapo;
 		
 		// Format des Intitulés
 		tableFrise.getTableHeader().setBackground(new java.awt.Color(45, 35, 66));
@@ -44,14 +50,15 @@ public class PanelFrise extends JPanel {
 		//Case cliquée
 		tableFrise.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				Evenement selected = null;
+				ImageIcon selected = null;
 				if (e.getClickCount() == 1) { // Nombre de clics à effectuer
 					JTable target = (JTable)e.getSource();
 					int row = target.getSelectedRow();
 					int column = target.getSelectedColumn();
-					selected = (Evenement) tableFrise.getValueAt(row, column);
-					gestionnaire.show(panelDiapo,selected.toString());
-					// chIndex = ...;
+					selected = (ImageIcon) tableFrise.getValueAt(row, column);
+					if (selected!=null)
+							gestionnaire.show(panelDiapo,selected.getDescription());
+							// chIndex = ...;
 				}
 			}
 		});
@@ -61,4 +68,5 @@ public class PanelFrise extends JPanel {
 		
 		this.add(scrollPane);
 	}
+
 }
