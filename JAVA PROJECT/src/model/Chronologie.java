@@ -37,6 +37,10 @@ public class Chronologie {
 		return chNom+"§"+chDebut.toStringNum()+"§"+chFin.toStringNum()+"§"+chPas+"§"+chSave+"§"+evts;
 	}
 	
+	public void ajout(Evenement parEvenement){
+		chEvts.add(parEvenement);
+	}
+	
 	public Evenement getEvt(int parIndice){
 		int i=0;
 		Iterator<Evenement> it = chEvts.iterator();

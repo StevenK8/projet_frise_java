@@ -16,10 +16,13 @@ import model.*;
 public class PanelFils extends JPanel implements ActionListener{
 	//Déclaration et instanciation des éléments graphiques
 	CardLayout gestionnaire = new CardLayout();
+	CardLayout gestionPanels = new CardLayout();
+	JPanel panelAffichage = new JPanel();
 	JButton boutonGauche = new JButton("<");
 	JButton boutonDroite = new JButton(">");
 	JLabel panelTitre = new JLabel("Titre",SwingConstants.CENTER);
 	JPanel panelDiapo = new JPanel();
+	JPanel panelFormulaire;
 	PanelFrise panelFrise;
 	Chronologie chCronologie;
 	Evenement evenementCourant;
@@ -27,11 +30,13 @@ public class PanelFils extends JPanel implements ActionListener{
 	int chNombreDiapo;
 	
 	public PanelFils(Chronologie parChrono){
+		setLayout(gestionPanels);
 		chCronologie = parChrono;
 		PanelFrise panelFrise = new PanelFrise(chCronologie,gestionnaire,panelDiapo);
-		setLayout(new BorderLayout());
+		panelAffichage.setLayout(new BorderLayout());
 		panelDiapo.setLayout(gestionnaire);
 		panelTitre.setFont(new Font("Century Gothic",Font.BOLD,20));
+		panelFormulaire = new PanelFormulaire(chCronologie);
 		
 		boutonGauche.addActionListener(this);
 		boutonDroite.addActionListener(this);
@@ -46,11 +51,13 @@ public class PanelFils extends JPanel implements ActionListener{
 		}
 		
 		//Placement des composants dans le Panel
-		add(panelTitre, BorderLayout.NORTH);
-		add(panelFrise, BorderLayout.SOUTH);
-		add(boutonGauche, BorderLayout.WEST);
-		add(boutonDroite, BorderLayout.EAST);
-		add(panelDiapo, BorderLayout.CENTER);
+		panelAffichage.add(panelTitre, BorderLayout.NORTH);
+		panelAffichage.add(panelFrise, BorderLayout.SOUTH);
+		panelAffichage.add(boutonGauche, BorderLayout.WEST);
+		panelAffichage.add(boutonDroite, BorderLayout.EAST);
+		panelAffichage.add(panelDiapo, BorderLayout.CENTER);
+		add(panelAffichage,ITEMS[0]);
+		add(panelFormulaire,ITEMS[1]);
 	}
 	
 	public Chronologie getChrono() {
@@ -65,6 +72,12 @@ public class PanelFils extends JPanel implements ActionListener{
 		else if(parEvt.getSource()==boutonDroite && chIndex !=chNombreDiapo-1) {
 			gestionnaire.next(panelDiapo);
 			chIndex++;
+		}
+		else if (parEvt.getActionCommand() == ITEMS[0]) {
+			gestionPanels.show(this, ITEMS[0]);
+		}
+		else if (parEvt.getActionCommand() == ITEMS[1]) {
+			gestionPanels.show(this, ITEMS[1]);
 		}
 	}
 }

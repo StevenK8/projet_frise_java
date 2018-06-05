@@ -41,32 +41,39 @@ public class FenetreMere extends JFrame implements ActionListener {
     	Chronologie chrono1 = new Chronologie("Fabrice",test, new Date(5,8,1980),new Date(11,9,2005),5,"save");
         contentPane = new PanelFils(chrono1);
         
-        //Barre des menus
+      //Barre des menus
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
+        menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
         //Creation
         JMenu creation = new JMenu("Création");
-        JMenuItem nouveau = new JMenuItem("Nouveau",'N');
+        JMenu nouveau = new JMenu("Nouveau");
+        JMenuItem newEvt = new JMenuItem(ITEMS[1],'N');
+        JMenuItem newFrise = new JMenuItem("Nouvel Frise",'F');
         JMenuItem open = new JMenuItem("Ouvrir",'O');
         JMenuItem save = new JMenuItem("Sauvegarder",'S');
-        nouveau.addActionListener(this);
+        newEvt.addActionListener(contentPane);
+        newFrise.addActionListener(this);
         open.addActionListener(this);
         save.addActionListener(this);
-        nouveau.setActionCommand("new");
+        newEvt.setActionCommand(ITEMS[1]);
+        newFrise.setActionCommand("newFrise");
         open.setActionCommand("open");
         save.setActionCommand("save");
-        nouveau.setAccelerator(KeyStroke.getKeyStroke('N', java.awt.Event.CTRL_MASK));
+        newEvt.setAccelerator(KeyStroke.getKeyStroke('N', java.awt.Event.CTRL_MASK));
+        newFrise.setAccelerator(KeyStroke.getKeyStroke('F', java.awt.Event.CTRL_MASK));
         save.setAccelerator(KeyStroke.getKeyStroke('S', java.awt.Event.CTRL_MASK));
         creation.add(nouveau);
+        nouveau.add(newEvt);
+        nouveau.add(newFrise);
         creation.add(open);
         creation.add(save);
         
         //Affichage
-        JMenu affichage = new JMenu("Affichage");
-        JMenuItem settings = new JMenuItem("Paramètres",'P');
-        settings.addActionListener(this);
-        settings.setActionCommand("settings");
-        affichage.add(settings);
+        JMenuItem affichage = new JMenuItem(ITEMS[0],'A');
+        affichage.addActionListener(contentPane);
+        affichage.setActionCommand(ITEMS[0]);
+        affichage.setAccelerator(KeyStroke.getKeyStroke('A', java.awt.Event.CTRL_MASK));
         
         //Fermer
         JMenu fermer = new JMenu("Fermer");
