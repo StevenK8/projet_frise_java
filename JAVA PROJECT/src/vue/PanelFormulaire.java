@@ -5,9 +5,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -36,6 +38,8 @@ public class PanelFormulaire extends JPanel implements ActionListener,Data{
 	private JLabel poids;
 	private String [] POIDS = new String[4];
 	private JComboBox saisiePoids;
+	private JButton inputImage;
+	private File fileImage;
 	
 	public PanelFormulaire(Chronologie parChronologie) {
 		chronologie = parChronologie;
@@ -102,12 +106,17 @@ public class PanelFormulaire extends JPanel implements ActionListener,Data{
 		saisiePoids = new JComboBox(POIDS);
 		position.gridx = 1;
 		add(saisiePoids, position);
+		position.gridx = 2;
+		position.gridwidth = 2;
+		inputImage = new JButton("Ajouter une image");
+		inputImage.addActionListener(this);
+		add(inputImage, position);
 	}
 
 	public void actionPerformed(ActionEvent parEvt) {
 		if(parEvt.getSource()==ajout){
 			Evenement newEvenement = new Evenement(saisieTitre.getText(), new Date(jour.getSelectedIndex()+1, 
-					mois.getSelectedIndex()+1, annee.getSelectedIndex()+chronologie.chDebut.getAnnee()+1), saisieDescriptif.getText(), "", saisiePoids.getSelectedIndex());
+					mois.getSelectedIndex()+1, annee.getSelectedIndex()+chronologie.chDebut.getAnnee()+1), saisieDescriptif.getText(), fileImage.getName(), saisiePoids.getSelectedIndex());
 			chronologie.ajout(newEvenement);
 			saisieTitre.setText("");
 			jour.setSelectedIndex(0);
@@ -115,6 +124,16 @@ public class PanelFormulaire extends JPanel implements ActionListener,Data{
 			annee.setSelectedIndex(0);
 			saisieDescriptif.setText("");
 			saisiePoids.setSelectedIndex(0);
+		}
+		if(parEvt.getSource()==inputImage) {
+			final JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showOpenDialog(this);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+	            fileImage = fc.getSelectedFile();
+	            System.out.println("Fichier selectionné: " + fileImage.getName());
+	        } else {
+	        	System.out.println("Ouverture de fichier annulée par l'utilisateur");
+	        }
 		}
 	}
 }
