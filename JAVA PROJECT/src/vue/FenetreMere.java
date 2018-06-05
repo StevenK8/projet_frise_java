@@ -1,5 +1,6 @@
 package vue;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -18,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import model.*;
 
-public class FenetreMere extends JFrame implements ActionListener {
+public class FenetreMere extends JFrame implements ActionListener,Data {
 	public int nbChrono=0;
 	public PanelFils contentPane;
 	private String chNom;
@@ -41,32 +42,39 @@ public class FenetreMere extends JFrame implements ActionListener {
     	Chronologie chrono1 = new Chronologie("AnnÃ©es 2000",test, new Date(5,8,1999),new Date(17,3,2015),5,"save21Century");
         contentPane = new PanelFils(chrono1);
         
-        //Barre des menus
+      //Barre des menus
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
+        menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
         //Creation
-        JMenu creation = new JMenu("Creation");
-        JMenuItem nouveau = new JMenuItem("Nouveau",'N');
+        JMenu creation = new JMenu("Création");
+        JMenu nouveau = new JMenu("Nouveau");
+        JMenuItem newEvt = new JMenuItem(ITEMS[1],'N');
+        JMenuItem newFrise = new JMenuItem("Nouvel Frise",'F');
         JMenuItem open = new JMenuItem("Ouvrir",'O');
         JMenuItem save = new JMenuItem("Sauvegarder",'S');
-        nouveau.addActionListener(this);
+        newEvt.addActionListener(contentPane);
+        newFrise.addActionListener(this);
         open.addActionListener(this);
         save.addActionListener(this);
-        nouveau.setActionCommand("new");
+        newEvt.setActionCommand(ITEMS[1]);
+        newFrise.setActionCommand("newFrise");
         open.setActionCommand("open");
         save.setActionCommand("save");
-        nouveau.setAccelerator(KeyStroke.getKeyStroke('N', java.awt.Event.CTRL_MASK));
+        newEvt.setAccelerator(KeyStroke.getKeyStroke('N', java.awt.Event.CTRL_MASK));
+        newFrise.setAccelerator(KeyStroke.getKeyStroke('F', java.awt.Event.CTRL_MASK));
         save.setAccelerator(KeyStroke.getKeyStroke('S', java.awt.Event.CTRL_MASK));
         creation.add(nouveau);
+        nouveau.add(newEvt);
+        nouveau.add(newFrise);
         creation.add(open);
         creation.add(save);
         
         //Affichage
-        JMenu affichage = new JMenu("Affichage");
-        JMenuItem settings = new JMenuItem("Parametres",'P');
-        settings.addActionListener(this);
-        settings.setActionCommand("settings");
-        affichage.add(settings);
+        JMenuItem affichage = new JMenuItem(ITEMS[0],'A');
+        affichage.addActionListener(contentPane);
+        affichage.setActionCommand(ITEMS[0]);
+        affichage.setAccelerator(KeyStroke.getKeyStroke('A', java.awt.Event.CTRL_MASK));
         
         //Fermer
         JMenu fermer = new JMenu("Fermer");
@@ -144,17 +152,6 @@ public class FenetreMere extends JFrame implements ActionListener {
     }
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand()=="new") {
-			PanelFormulaire panelFormulaire = new PanelFormulaire();
-			JFrame fenetreFormulaire = new JFrame();
-			fenetreFormulaire.setContentPane(panelFormulaire);
-			fenetreFormulaire.setDefaultCloseOperation(HIDE_ON_CLOSE);
-			fenetreFormulaire.setSize(300, 200);
-			fenetreFormulaire.setVisible(true);
-			fenetreFormulaire.setLocation(0, 0);
-			fenetreFormulaire.setTitle("Nouvelle frise");
-		}
-		
 		if(e.getActionCommand()=="save") {
 			Chronologie chronoCourante = contentPane.getChrono();
 			String savePath = new String(chronoCourante.getSave());

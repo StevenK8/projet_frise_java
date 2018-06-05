@@ -5,8 +5,8 @@ import java.util.TreeSet;
 
 public class Chronologie {
 	private String chNom;
-	private Date chDebut;
-	private Date chFin;
+	public Date chDebut;
+	public Date chFin;
 	private int chPas;
 	private String chSave;
 	private TreeSet<Evenement> chEvts;
