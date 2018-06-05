@@ -127,7 +127,7 @@ public class Date{
 			chaine += "janvier";
 			break;
 		case 2:
-			chaine += "fï¿½vrier";
+			chaine += "février";
 			break;
 		case 3:
 			chaine += "mars";
@@ -145,7 +145,7 @@ public class Date{
 			chaine += "juillet";
 			break;
 		case 8:
-			chaine += "aoï¿½t";
+			chaine += "août";
 			break;
 		case 9:
 			chaine += "septembre";
@@ -157,10 +157,10 @@ public class Date{
 			chaine += "novembre";
 			break;
 		case 12:
-			chaine += "dï¿½cembre";
+			chaine += "décembre";
 			break;
 		}
-		return chaine;
+		return chaine + " " + annee;
 	}
 
 	public int getAnnee() {

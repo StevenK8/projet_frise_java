@@ -27,7 +27,7 @@ public class PanelEvenement extends JPanel{
 	
 	public PanelEvenement(String parTitre, String parTexte, String parDate, String parImage){
 		if(parTexte.length()>25) { // Retour � la ligne
-			String texteLigne = new String("<html><div style='text-align: center;'>");
+			String texteLigne = new String("<html><div style='text-align: justify;'>");
 			char[] sAr = parTexte.toCharArray();
 			int start = 0;
 			for (int i = 25; i < sAr.length; i++) {
@@ -68,21 +68,23 @@ public class PanelEvenement extends JPanel{
 		this.setLayout(new GridBagLayout());
 		
 		GridBagConstraints contrainte = new GridBagConstraints();
-        contrainte.gridheight = 3;
+		contrainte.gridx = 0;
+		contrainte.gridy = 0;
+        contrainte.gridheight = 5;
         contrainte.gridwidth = 5;
-        contrainte.insets = new Insets(10, 0, 0, 0);
-        contrainte.anchor = GridBagConstraints.CENTER;
+        contrainte.insets = new Insets(10, 10, 10, 10);
+        contrainte.anchor = GridBagConstraints.NORTH;
         this.add(chImage, contrainte);
         
         contrainte.gridheight = 1;
-        contrainte.gridwidth = 5;
-        contrainte.gridx = 5;
+        contrainte.gridwidth = 4;
+        contrainte.gridx = 6;
         this.add(chDate, contrainte);
 
         contrainte.gridy += 2;
         this.add(chTitre, contrainte);
 
-        contrainte.gridheight = 1;
+        contrainte.gridheight = 2;
         contrainte.gridy += 1;
         this.add(chTexte, contrainte);
 		

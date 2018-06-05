@@ -30,16 +30,16 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 	private TreeSet<Evenement> chEvts;
 	
     public FenetreMere() {
-    	Evenement bob = new Evenement("Le passage Ã  l'an 2000", new Date (1,1,2000), "Feu d'artifice", "2000", 3);
-    	Evenement bob2 = new Evenement("Concorde s'Ã©crase", new Date (25,7,2000), "Le concorde s'Ã©crase le 25 juillet 2000, 1min28 aprÃ¨s son dÃ©collage. ", "CONCORDE", 2);
-    	Evenement evt1 = new Evenement("Vladimir Poutine", new Date (15,9,2004), " Vladimir Poutine fringant comme un jeune coq lors de ses vacances en SibÃ©rie.", "POUTINE", 2);
-    	Evenement evt2 = new Evenement("Robot curiosity", new Date (7,8,2012), " La premiÃ¨re image du robot Curiosity.", "CURIOSITY", 0);
+    	Evenement bob = new Evenement("Le passage à l'an 2000", new Date (1,1,2000), "Feu d'artifice", "2000", 3);
+    	Evenement bob2 = new Evenement("Concorde s'écrase", new Date (25,7,2000), "Le concorde s'écrase le 25 juillet 2000, 1min28 après son décollage. ", "CONCORDE", 2);
+    	Evenement evt1 = new Evenement("Vladimir Poutine", new Date (15,9,2004), "Vladimir Poutine fringant comme un jeune coq lors de ses vacances en Sibérie.", "POUTINE", 2);
+    	Evenement evt2 = new Evenement("Robot curiosity", new Date (7,8,2012), "La première image du robot Curiosity.", "CURIOSITY", 0);
     	TreeSet <Evenement> test = new TreeSet<Evenement>();
     	test.add(bob);
     	test.add(bob2);
     	test.add(evt1);
     	test.add(evt2);
-    	Chronologie chrono1 = new Chronologie("AnnÃ©es 2000",test, new Date(5,8,1999),new Date(17,3,2015),5,"save21Century");
+    	Chronologie chrono1 = new Chronologie("Années 2000",test, new Date(5,8,1999),new Date(17,3,2015),5,"save21Century");
         contentPane = new PanelFils(chrono1);
         
       //Barre des menus
@@ -98,7 +98,7 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
         menuBar.add(aide);
         setContentPane(contentPane);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1280, 800);
+        setSize(1280, 830);
         setVisible(true);
         setLocation(0, 0);
         setTitle("Frise chronologique - Kerautret Steven - Brasset Alexis");

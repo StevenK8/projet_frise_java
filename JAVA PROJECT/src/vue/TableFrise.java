@@ -36,12 +36,10 @@ public class TableFrise extends DefaultTableModel{
 			try {
 				image = ImageIO.read(fichierImage);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				System.out.println("Image manquante");
 				e.printStackTrace();
 			}
 			BufferedImage resized = resize(image, 110, 150);
-			//Image image = imageIcon.getImage();
-			//Image scaledImage = image.getScaledInstance(150, 110,  java.awt.Image.SCALE_SMOOTH);
 			imageIcon = new ImageIcon(resized,evenementCourant.toString());
 			setValueAt(imageIcon,evenementCourant.getPoids(),evenementCourant.getDate().getAnnee()-parChrono.getDebut());
 			}
