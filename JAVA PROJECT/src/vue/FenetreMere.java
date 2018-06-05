@@ -212,7 +212,9 @@ public class FenetreMere extends JFrame implements ActionListener {
 		*/
 				Chronologie open = new Chronologie(chNom, evts, chDebut, chFin, chPas, chSave);
 				contentPane = new PanelFils(open);
-				//setContentPane(contentPane);
+				remove(this.getContentPane());
+				setContentPane(contentPane);
+				pack();
 			}
 		}
 		
