@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.TreeSet;
 
 public class Chronologie {
-	private String chNom;
+	public String chNom;
 	public Date chDebut;
 	public Date chFin;
 	private int chPas;

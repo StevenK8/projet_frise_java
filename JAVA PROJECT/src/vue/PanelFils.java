@@ -20,38 +20,39 @@ public class PanelFils extends JPanel implements ActionListener,Data{
 	JPanel panelAffichage = new JPanel();
 	JButton boutonGauche = new JButton("<");
 	JButton boutonDroite = new JButton(">");
-	JLabel panelTitre = new JLabel("Titre",SwingConstants.CENTER);
+	JLabel titre;
 	JPanel panelDiapo = new JPanel();
 	JPanel panelFormulaire;
 	PanelFrise panelFrise;
-	Chronologie chCronologie;
+	Chronologie chChronologie;
 	Evenement evenementCourant;
 	int chIndex = 0;
 	int chNombreDiapo;
 	
 	public PanelFils(Chronologie parChrono){
 		setLayout(gestionPanels);
-		chCronologie = parChrono;
-		PanelFrise panelFrise = new PanelFrise(chCronologie,gestionEvts,panelDiapo);
+		chChronologie = parChrono;
+		PanelFrise panelFrise = new PanelFrise(chChronologie,gestionEvts,panelDiapo);
 		panelAffichage.setLayout(new BorderLayout());
 		panelDiapo.setLayout(gestionEvts);
-		panelTitre.setFont(new Font("Century Gothic",Font.BOLD,20));
-		panelFormulaire = new PanelFormulaire(chCronologie);
+		titre = new JLabel(chChronologie.chNom,SwingConstants.CENTER);
+		titre.setFont(new Font("Century Gothic",Font.BOLD,20));
+		panelFormulaire = new PanelFormulaire(chChronologie);
 		
 		boutonGauche.addActionListener(this);
 		boutonDroite.addActionListener(this);
 		
-		chNombreDiapo = chCronologie.getEvts().size();
+		chNombreDiapo = chChronologie.getEvts().size();
 		PanelEvenement [] panelEvenement = new PanelEvenement[chNombreDiapo];
 
 		for (int i=0; i<chNombreDiapo; i++){
-			evenementCourant = chCronologie.getEvt(i);
+			evenementCourant = chChronologie.getEvt(i);
 			panelEvenement[i] = new PanelEvenement(evenementCourant.getNom(),evenementCourant.getText(),evenementCourant.getDate().toString(),evenementCourant.getImg());
 			panelDiapo.add(panelEvenement[i], evenementCourant.toString());
 		}
 		
 		//Placement des composants dans le Panel
-		panelAffichage.add(panelTitre, BorderLayout.NORTH);
+		panelAffichage.add(titre, BorderLayout.NORTH);
 		panelAffichage.add(panelFrise, BorderLayout.SOUTH);
 		panelAffichage.add(boutonGauche, BorderLayout.WEST);
 		panelAffichage.add(boutonDroite, BorderLayout.EAST);
@@ -61,7 +62,7 @@ public class PanelFils extends JPanel implements ActionListener,Data{
 	}
 	
 	public Chronologie getChrono() {
-		return chCronologie;
+		return chChronologie;
 	}
 
 	public void actionPerformed (ActionEvent parEvt) {
