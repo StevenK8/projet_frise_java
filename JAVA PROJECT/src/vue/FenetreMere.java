@@ -27,9 +27,8 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 	private Date chFin;
 	private int chPas;
 	private String chSave;
-	private TreeSet<Evenement> chEvts;
 	
-    public FenetreMere() {
+	public FenetreMere() {
     	Evenement bob = new Evenement("Le passage à l'an 2000", new Date (1,1,2000), "Feu d'artifice", "2000", 3);
     	Evenement bob2 = new Evenement("Concorde s'écrase", new Date (25,7,2000), "Le concorde s'écrase le 25 juillet 2000, 1min28 après son décollage. ", "CONCORDE", 2);
     	Evenement evt1 = new Evenement("Vladimir Poutine", new Date (15,9,2004), "Vladimir Poutine fringant comme un jeune coq lors de ses vacances en Sibérie.", "POUTINE", 2);
