@@ -59,7 +59,7 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
         
         //Affichage
         JMenuItem affichage = new JMenuItem(ITEMS[0],'A');
-        affichage.addActionListener(contentPane);
+        affichage.addActionListener(this);
         affichage.setActionCommand(ITEMS[0]);
         affichage.setAccelerator(KeyStroke.getKeyStroke('A', java.awt.Event.CTRL_MASK));
         
