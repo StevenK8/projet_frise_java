@@ -24,18 +24,27 @@ public class PanelEvenement extends JPanel{
 	public JLabel chTexte = new JLabel("Texte");
 	
 	public PanelEvenement(String parTitre, String parTexte, String parDate, String parImage){
-		if(parTexte.length()>25) { // Retour ï¿½ la ligne
+		int pasRetour = 90; //En fonction de la longueur du texte, on définit la longueur des lignes
+		if(parTexte.length()<100)
+			pasRetour = 50;
+		else if(parTexte.length()<300)
+			pasRetour = 60;
+		else if(parTexte.length()<700)
+			pasRetour = 90;
+		else
+			pasRetour = 120;
+		if(parTexte.length()>pasRetour) { // Retour à la ligne
 			String texteLigne = new String("<html><div style='text-align: justify;'>");
 			char[] sAr = parTexte.toCharArray();
 			int start = 0;
-			for (int i = 25; i < sAr.length; i++) {
+			for (int i = pasRetour; i < sAr.length; i++) {
 			    if (sAr[i] == ' ') {
 			    	texteLigne+=parTexte.substring(start, i)+"<br>";
 			        start = i+1;
-			        i += 25;
+			        i += pasRetour;
 			    }
 			}
-			texteLigne+="</div></html>";
+			texteLigne+=parTexte.substring(start, sAr.length)+"</div></html>";
 			chTexte.setText(texteLigne);
 		}else {
 			chTexte.setText(parTexte);
@@ -55,7 +64,6 @@ public class PanelEvenement extends JPanel{
 		try {
 			image = ImageIO.read(fichierImage);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		BufferedImage resized = resize(image, 200, 300);

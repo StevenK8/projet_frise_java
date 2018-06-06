@@ -33,8 +33,7 @@ public class PanelFrise extends JPanel {
 		tableFrise.getTableHeader().setForeground(new java.awt.Color(229, 236, 239));
 		tableFrise.getTableHeader().setResizingAllowed(false);
 		tableFrise.getTableHeader().setReorderingAllowed(false);
-		tableFrise.setRowHeight(100); // Hauteur des lignes
-		
+		tableFrise.setRowHeight(110); // Hauteur des lignes		
 		tableFrise.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		JScrollPane scrollPane = new JScrollPane(tableFrise,ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER , ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);

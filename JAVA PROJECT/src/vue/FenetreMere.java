@@ -79,7 +79,7 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
         help.setAccelerator(KeyStroke.getKeyStroke('A', java.awt.Event.CTRL_MASK));
         aide.add(help);
         
-        open.doClick();
+        open.doClick(); // Appelle l'action ouvrir un fichier: "open"
         
         menuBar.add(creation);
         menuBar.add(affichage);
