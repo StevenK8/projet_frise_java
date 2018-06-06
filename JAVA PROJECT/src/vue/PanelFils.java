@@ -20,32 +20,33 @@ public class PanelFils extends JPanel implements ActionListener,Data{
 	JPanel panelAffichage = new JPanel();
 	JButton boutonGauche = new JButton("<");
 	JButton boutonDroite = new JButton(">");
-	JLabel panelTitre = new JLabel("Titre",SwingConstants.CENTER);
+	JLabel panelTitre;
 	JPanel panelDiapo = new JPanel();
 	JPanel panelFormulaire;
 	PanelFrise panelFrise;
-	Chronologie chCronologie;
+	Chronologie chChronologie;
 	Evenement evenementCourant;
 	int chIndex = 0;
 	int chNombreDiapo;
 	
 	public PanelFils(Chronologie parChrono){
 		setLayout(gestionPanels);
-		chCronologie = parChrono;
-		PanelFrise panelFrise = new PanelFrise(chCronologie,gestionEvts,panelDiapo);
+		chChronologie = parChrono;
+		PanelFrise panelFrise = new PanelFrise(chChronologie,gestionEvts,panelDiapo);
 		panelAffichage.setLayout(new BorderLayout());
 		panelDiapo.setLayout(gestionEvts);
+		panelTitre = new JLabel(chChronologie.chNom,SwingConstants.CENTER);
 		panelTitre.setFont(new Font("Century Gothic",Font.BOLD,20));
-		panelFormulaire = new PanelFormulaire(chCronologie);
+		panelFormulaire = new PanelFormulaire(chChronologie);
 		
 		boutonGauche.addActionListener(this);
 		boutonDroite.addActionListener(this);
 		
-		chNombreDiapo = chCronologie.getEvts().size();
+		chNombreDiapo = chChronologie.getEvts().size();
 		PanelEvenement [] panelEvenement = new PanelEvenement[chNombreDiapo];
 
 		for (int i=0; i<chNombreDiapo; i++){
-			evenementCourant = chCronologie.getEvt(i);
+			evenementCourant = chChronologie.getEvt(i);
 			panelEvenement[i] = new PanelEvenement(evenementCourant.getNom(),evenementCourant.getText(),evenementCourant.getDate().toString(),evenementCourant.getImg());
 			panelDiapo.add(panelEvenement[i], evenementCourant.toString());
 		}
@@ -61,7 +62,7 @@ public class PanelFils extends JPanel implements ActionListener,Data{
 	}
 	
 	public Chronologie getChrono() {
-		return chCronologie;
+		return chChronologie;
 	}
 
 	public void actionPerformed (ActionEvent parEvt) {
