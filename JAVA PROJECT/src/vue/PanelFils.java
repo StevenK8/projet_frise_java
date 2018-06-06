@@ -74,11 +74,8 @@ public class PanelFils extends JPanel implements ActionListener,Data{
 			gestionEvts.next(panelDiapo);
 			chIndex++;
 		}
-		else if (parEvt.getActionCommand() == ITEMS[0]) {
-			gestionPanels.show(this, ITEMS[0]);
-		}
-		else if (parEvt.getActionCommand() == ITEMS[1]) {
-			gestionPanels.show(this, ITEMS[1]);
-		}
+	}
+	public void setDiapo(String parDiapo) {
+		gestionPanels.show(this, parDiapo);
 	}
 }

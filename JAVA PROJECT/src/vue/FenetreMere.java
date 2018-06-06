@@ -40,7 +40,7 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
         JMenuItem newFrise = new JMenuItem("Nouvelle Frise",'F');
         JMenuItem open = new JMenuItem("Ouvrir",'O');
         JMenuItem save = new JMenuItem("Sauvegarder",'S');
-        newEvt.addActionListener(contentPane);
+        newEvt.addActionListener(this);
         newFrise.addActionListener(this);
         open.addActionListener(this);
         save.addActionListener(this);
@@ -194,6 +194,12 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 				setContentPane(contentPane);
 				pack();
 			}
+		}
+		else if (e.getActionCommand() == ITEMS[0]) {
+			contentPane.setDiapo(ITEMS[0]);
+		}
+		else if (e.getActionCommand() == ITEMS[1]) {
+			contentPane.setDiapo(ITEMS[1]);
 		}
 		
 		if(e.getActionCommand()=="settings") {
