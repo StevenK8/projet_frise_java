@@ -54,8 +54,12 @@ public class Evenement implements Comparable<Evenement>{
     public int compareTo(Evenement parEvt) {
         if (chDate.compareTo(parEvt.chDate) != 0)
             return (chDate.compareTo(parEvt.chDate));
+        else if(chPoids < parEvt.chPoids)
+        	return 1;
+        else if(chPoids > parEvt.chPoids) 
+        	return -1;
         else
-            return (chNom.compareTo(parEvt.chNom));
+        	return (chNom.compareTo(parEvt.chNom));
 
     }
 

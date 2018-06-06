@@ -55,7 +55,7 @@ public class Chronologie {
 	public int getDuree() {
 		if (chFin.getAnnee()>chDebut.getAnnee())
 			return chFin.getAnnee()-chDebut.getAnnee()+1;
-		System.out.println("Annï¿½e de fin antï¿½rieure ï¿½ l'annï¿½e de dï¿½but (exception ï¿½ construire)");
+		System.out.println("Erreur : Année de fin antérieure à l'année de début");
 		return 1;
 	}
 	public int getPas() {
