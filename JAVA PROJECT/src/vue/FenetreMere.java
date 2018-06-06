@@ -199,14 +199,6 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 					events[i]=getEvt(lu[i+5]);
 					evts.add(events[i]);
 				}
-				/*
-				//Par d�faut
-				Evenement evt1 = new Evenement("Bataille de java", new Date (11,2,1941), "Java is a general-purpose computer-programming language that is concurrent, class-based, object-oriented, and specifically designed to have as few implementation dependencies as possible.", "JAVA", 2);
-		    	Evenement evt2 = new Evenement("Guerre du python", new Date (1,12,1960), "Python is an interpreted high-level programming language for general-purpose programming. Created by Guido van Rossum and first released in 1991, Python has a design philosophy that emphasizes code readability, notably using significant whitespace.", "PYTHON", 3);
-		    	TreeSet <Evenement> evts = new TreeSet<Evenement>();
-		    	evts.add(evt1);
-		    	evts.add(evt2);
-		*/
 				Chronologie open = new Chronologie(chNom, evts, chDebut, chFin, chPas, chSave);
 				contentPane = new PanelFils(open);
 				remove(this.getContentPane());
