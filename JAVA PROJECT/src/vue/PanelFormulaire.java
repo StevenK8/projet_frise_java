@@ -172,14 +172,13 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 		}
 		if(parEvt.getSource()==inputImage) {
 			final JFileChooser fc = new JFileChooser();
+			fc.setCurrentDirectory(new File  
+					(System.getProperty("user.home") + System.getProperty("file.separator")+ "git"+System.getProperty("file.separator")+"PROJECT"+System.getProperty("file.separator")+"JAVA PROJECT"+System.getProperty("file.separator")+"images"));
 			int returnVal = fc.showOpenDialog(this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 	            fileImage = fc.getSelectedFile();
-	            String image = fileImage.getName();
-	            int pos = image.lastIndexOf(".");
-	            if (pos > 0) {
-	            	image = image.substring(0, pos);
-	            }
+	            String[] nomImage = fileImage.getName().split("\\.");
+	            image = nomImage[0];
 	            System.out.println("Fichier selectionné: " + fileImage.getName());
 	        } else {
 	        	System.out.println("Ouverture de fichier annulée par l'utilisateur");
