@@ -50,7 +50,7 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
         JMenu creation = new JMenu("Création");
         JMenu nouveau = new JMenu("Nouveau");
         JMenuItem newEvt = new JMenuItem(ITEMS[1],'N');
-        JMenuItem newFrise = new JMenuItem("Nouvel Frise",'F');
+        JMenuItem newFrise = new JMenuItem("Nouvelle Frise",'F');
         JMenuItem open = new JMenuItem("Ouvrir",'O');
         JMenuItem save = new JMenuItem("Sauvegarder",'S');
         newEvt.addActionListener(contentPane);
