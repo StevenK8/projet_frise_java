@@ -16,11 +16,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import model.Chronologie;
-import model.Data;
 import model.Date;
 import model.Evenement;
 
-public class PanelFormulaire extends JPanel implements ActionListener,Data{
+public class PanelFormulaire extends JPanel implements ActionListener{
 	private Chronologie chronologie;
 	private JLabel etiquette;
 	private JButton ajout;
@@ -93,6 +92,7 @@ public class PanelFormulaire extends JPanel implements ActionListener,Data{
 		position.gridy = 3;
 		add(descriptif, position);
 		saisieDescriptif = new JTextArea(3,15);
+		saisieDescriptif.setLineWrap(true);
 		position.gridx = 1;
 		position.gridwidth = 3;
 		add(saisieDescriptif, position);
