@@ -6,7 +6,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +15,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 public class PanelEvenement extends JPanel{
 	
@@ -49,7 +47,6 @@ public class PanelEvenement extends JPanel{
 		chTexte.setFont(new Font("Century Gothic",Font.ITALIC,12));
 		chDate.setFont(new Font("Century Gothic",Font.BOLD+Font.ITALIC,14));
 		
-		String imageLink = new String();
 		File fichierImage = new File("images/"+parImage+".jpg");
 		if (fichierImage.isFile()||(fichierImage = new File("images/"+parImage+".png")).isFile()) {
 			chImage.setText(""); // Si l'image existe, on retire "image"
