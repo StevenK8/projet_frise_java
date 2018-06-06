@@ -20,7 +20,7 @@ public class PanelFils extends JPanel implements ActionListener,Data{
 	JPanel panelAffichage = new JPanel();
 	JButton boutonGauche = new JButton("<");
 	JButton boutonDroite = new JButton(">");
-	JLabel panelTitre;
+	JLabel titre;
 	JPanel panelDiapo = new JPanel();
 	JPanel panelFormulaire;
 	PanelFrise panelFrise;
@@ -35,8 +35,8 @@ public class PanelFils extends JPanel implements ActionListener,Data{
 		PanelFrise panelFrise = new PanelFrise(chChronologie,gestionEvts,panelDiapo);
 		panelAffichage.setLayout(new BorderLayout());
 		panelDiapo.setLayout(gestionEvts);
-		panelTitre = new JLabel(chChronologie.chNom,SwingConstants.CENTER);
-		panelTitre.setFont(new Font("Century Gothic",Font.BOLD,20));
+		titre = new JLabel(chChronologie.chNom,SwingConstants.CENTER);
+		titre.setFont(new Font("Century Gothic",Font.BOLD,20));
 		panelFormulaire = new PanelFormulaire(chChronologie);
 		
 		boutonGauche.addActionListener(this);
@@ -52,7 +52,7 @@ public class PanelFils extends JPanel implements ActionListener,Data{
 		}
 		
 		//Placement des composants dans le Panel
-		panelAffichage.add(panelTitre, BorderLayout.NORTH);
+		panelAffichage.add(titre, BorderLayout.NORTH);
 		panelAffichage.add(panelFrise, BorderLayout.SOUTH);
 		panelAffichage.add(boutonGauche, BorderLayout.WEST);
 		panelAffichage.add(boutonDroite, BorderLayout.EAST);
