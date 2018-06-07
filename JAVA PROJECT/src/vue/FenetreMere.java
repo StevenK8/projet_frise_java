@@ -207,6 +207,53 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 			contentPane.setDiapo(ITEMS[1]);
 		}
 		
+		if(e.getActionCommand()=="newFrise") {
+			JFrame frame = new JFrame("Nom de la frise");
+
+		    String nomFrise = JOptionPane.showInputDialog(frame, "Quel nom voulez vous donner à cette frise?");
+		    if(nomFrise!=null) {
+		    	chNom=nomFrise;
+		    	chSave="save"+nomFrise;
+		    	frame.setTitle("Date de début de la frise");
+		    	String dateDebutFrise = JOptionPane.showInputDialog(frame, "Veuillez entrer la date de début de la frise sous la forme 'JJ/MM/AAAA'");
+		    	if(dateDebutFrise!=null) {
+		    		try {
+		    			chDebut = getDate(dateDebutFrise);
+		    			frame.setTitle("Date de fin de la frise");
+				    	String dateFinFrise = JOptionPane.showInputDialog(frame, "Veuillez entrer la date de fin de la frise sous la forme 'JJ/MM/AAAA'");
+				    	if(dateFinFrise!=null && dateFinFrise.compareTo(dateDebutFrise)==1) {
+				    		try {
+				    			chFin = getDate(dateFinFrise);
+				    			frame.setTitle("Pas de la frise");
+						    	String pasFrise = JOptionPane.showInputDialog(frame, "Veuillez entrer le pas de la frise");
+						    	if (pasFrise!=null) {
+						    		chPas = Integer.parseInt(pasFrise);
+						    		TreeSet <Evenement> evts = new TreeSet<Evenement>();
+						    		Chronologie newChrono = new Chronologie(chNom, evts, chDebut, chFin, chPas, chSave);
+						    		writeFile(chSave,newChrono.toString());
+						    	}
+						    	return;
+				    		}catch(Exception parExc){
+				    			System.out.println("Veuillez entrer une date valide");
+				    			return;
+				    		}
+				    	}
+				    	else {
+				    		System.out.println("Veuillez entrer une date valide (ultérieure à "+dateDebutFrise+")");
+				    		return;
+				    	}
+		    		}catch(Exception parExc){
+		    			System.out.println("Veuillez entrer une date valide");
+		    			return;
+		    		}
+		    	}
+		    }else {
+		    	System.out.println("Veuillez entrer un nom");
+		    	return;
+		    }
+		    return;
+		}
+		
 		if(e.getActionCommand()=="settings") {
 			System.out.println("settings");
 		}
