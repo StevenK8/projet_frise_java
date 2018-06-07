@@ -34,7 +34,7 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
         setJMenuBar(menuBar);
         menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
         //Creation
-        JMenu creation = new JMenu("Cr�ation");
+        JMenu creation = new JMenu("Création");
         JMenu nouveau = new JMenu("Nouveau");
         JMenuItem newEvt = new JMenuItem(ITEMS[1],'N');
         JMenuItem newFrise = new JMenuItem("Nouvelle Frise",'F');
@@ -193,6 +193,10 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 				remove(this.getContentPane());
 				setContentPane(contentPane);
 				pack();
+			}
+			else if (choix == null){
+					System.out.println("Veuillez choisir un fichier de sauvegarde");
+					System.exit(0);
 			}
 		}
 		else if (e.getActionCommand() == ITEMS[0]) {

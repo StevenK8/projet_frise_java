@@ -47,6 +47,14 @@ public class Date{
 			return 1;
 		return 0;
 	}
+	
+	public int compareAn(Date parDate) {
+		if (annee < parDate.annee)
+			return -1;
+		if (annee > parDate.annee)
+			return 1;
+		return 0;
+	}
 
 	public Date dateDuLendemain() {
 		if (jour < dernierJourDuMois(mois, annee))
@@ -122,7 +130,7 @@ public class Date{
 			chaine += "janvier";
 			break;
 		case 2:
-			chaine += "février";
+			chaine += "fÃ©vrier";
 			break;
 		case 3:
 			chaine += "mars";
@@ -140,7 +148,7 @@ public class Date{
 			chaine += "juillet";
 			break;
 		case 8:
-			chaine += "août";
+			chaine += "aoÃ»t";
 			break;
 		case 9:
 			chaine += "septembre";
@@ -152,7 +160,7 @@ public class Date{
 			chaine += "novembre";
 			break;
 		case 12:
-			chaine += "décembre";
+			chaine += "dÃ©cembre";
 			break;
 		}
 		return chaine + " " + annee;
