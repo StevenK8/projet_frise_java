@@ -131,15 +131,15 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent parEvt) {
 		if(parEvt.getSource()==ajout){
 			if(saisieTitre.getText()=="" || saisieTitre.getText()==null) {
-				System.out.println("Veuillez donner un titre ï¿½ l'ï¿½vï¿½nement");
+				System.out.println("Veuillez donner un titre à l'événement");
 				return;
 			}
 			if(saisieDescriptif.getText()=="" || saisieDescriptif.getText()==null) {
-				System.out.println("Veuillez ajouter une description ï¿½ l'ï¿½vï¿½nement");
+				System.out.println("Veuillez ajouter une description à l'événement");
 				return;
 			}
 			if(image=="" || image==null) {
-				System.out.println("Veuillez ajouter une image ï¿½ l'ï¿½vï¿½nement");
+				System.out.println("Veuillez ajouter une image à l'événement");
 				return;
 			}
 			Date dateEvt = new Date(jour.getSelectedIndex()+1, mois.getSelectedIndex()+1, annee.getSelectedIndex()+chronologie.chDebut.getAnnee());
@@ -179,9 +179,9 @@ public class PanelFormulaire extends JPanel implements ActionListener{
 	            fileImage = fc.getSelectedFile();
 	            String[] nomImage = fileImage.getName().split("\\.");
 	            image = nomImage[0];
-	            System.out.println("Fichier selectionnï¿½: " + fileImage.getName());
+	            System.out.println("Fichier selectionné: " + fileImage.getName());
 	        } else {
-	        	System.out.println("Ouverture de fichier annulï¿½e par l'utilisateur");
+	        	System.out.println("Ouverture de fichier annulée par l'utilisateur");
 	        }
 		}
 	}

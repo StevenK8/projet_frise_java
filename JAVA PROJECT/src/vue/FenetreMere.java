@@ -33,6 +33,7 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
+        
         //Creation
         JMenu creation = new JMenu("Création");
         JMenu nouveau = new JMenu("Nouveau");
