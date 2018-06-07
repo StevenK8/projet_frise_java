@@ -1,5 +1,6 @@
 package vue;
 
+import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,8 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.TreeSet;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -221,16 +224,22 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 		    			chDebut = getDate(dateDebutFrise);
 		    			frame.setTitle("Date de fin de la frise");
 				    	String dateFinFrise = JOptionPane.showInputDialog(frame, "Veuillez entrer la date de fin de la frise sous la forme 'JJ/MM/AAAA'");
-				    	if(dateFinFrise!=null && dateFinFrise.compareTo(dateDebutFrise)==1) {
+				    	if(dateFinFrise!=null) {
 				    		try {
 				    			chFin = getDate(dateFinFrise);
-				    			frame.setTitle("Pas de la frise");
-						    	String pasFrise = JOptionPane.showInputDialog(frame, "Veuillez entrer le pas de la frise");
-						    	if (pasFrise!=null) {
-						    		chPas = Integer.parseInt(pasFrise);
-						    		TreeSet <Evenement> evts = new TreeSet<Evenement>();
-						    		Chronologie newChrono = new Chronologie(chNom, evts, chDebut, chFin, chPas, chSave);
-						    		writeFile(chSave,newChrono.toString());
+				    			if(chFin.compareTo(chDebut)==1) {
+					    			frame.setTitle("Pas de la frise");
+							    	String pasFrise = JOptionPane.showInputDialog(frame, "Veuillez entrer le pas de la frise");
+							    	if (pasFrise!=null) 
+							    		chPas = Integer.parseInt(pasFrise);
+							    	else
+							    		chPas = 1;
+							    	TreeSet <Evenement> evts = new TreeSet<Evenement>();
+							    	Chronologie newChrono = new Chronologie(chNom, evts, chDebut, chFin, chPas, chSave);
+							    	writeFile(chSave,newChrono.toString());
+						    	}else {
+						    		System.out.println("Veuillez entrer une date valide (ultérieure à "+dateDebutFrise+")");
+						    		return;
 						    	}
 						    	return;
 				    		}catch(Exception parExc){
@@ -239,7 +248,7 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 				    		}
 				    	}
 				    	else {
-				    		System.out.println("Veuillez entrer une date valide (ultérieure à "+dateDebutFrise+")");
+				    		System.out.println("Veuillez entrer une date valide");
 				    		return;
 				    	}
 		    		}catch(Exception parExc){
@@ -263,7 +272,17 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 		}
 		
 		if(e.getActionCommand()=="help") {
-			System.out.println("help");
+			File htmlFile = new File("doc/index.html");
+			try {
+				Desktop.getDesktop().browse(htmlFile.toURI());
+				try {
+					Desktop.getDesktop().browse(new URI("https://docs.google.com/document/d/1mFf_xIRFem01dspR9UxfmbgqGDqfJzQeAnC5XE8asGI/edit"));
+				} catch (URISyntaxException e1) {
+					e1.printStackTrace();
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 }
