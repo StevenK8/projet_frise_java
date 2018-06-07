@@ -37,7 +37,7 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
         setJMenuBar(menuBar);
         menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
         //Creation
-        JMenu creation = new JMenu("Création");
+        JMenu creation = new JMenu("CrÃ©ation");
         JMenu nouveau = new JMenu("Nouveau");
         JMenuItem newEvt = new JMenuItem(ITEMS[1],'N');
         JMenuItem newFrise = new JMenuItem("Nouvelle Frise",'F');
@@ -197,6 +197,12 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 				remove(this.getContentPane());
 				setContentPane(contentPane);
 				pack();
+			
+					
+			}
+			else if (choix == null){
+				System.out.println("veuillez sÃ©lectionner un fichier de sauvegarde");
+				System.exit(0);
 			}
 		}
 		else if (e.getActionCommand() == ITEMS[0]) {
@@ -208,12 +214,12 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 		if(e.getActionCommand()=="newFrise") {
 			JFrame frame = new JFrame("Nom de la frise");
 
-		    String nomFrise = JOptionPane.showInputDialog(frame, "Quel nom voulez vous donner à cette frise?");
+		    String nomFrise = JOptionPane.showInputDialog(frame, "Quel nom voulez vous donner Ã  cette frise?");
 		    if(nomFrise!=null) {
 		    	chNom=nomFrise;
 		    	chSave="save"+nomFrise;
-		    	frame.setTitle("Date de début de la frise");
-		    	String dateDebutFrise = JOptionPane.showInputDialog(frame, "Veuillez entrer la date de début de la frise sous la forme 'JJ/MM/AAAA'");
+		    	frame.setTitle("Date de dï¿½but de la frise");
+		    	String dateDebutFrise = JOptionPane.showInputDialog(frame, "Veuillez entrer la date de dÃ©but de la frise sous la forme 'JJ/MM/AAAA'");
 		    	if(dateDebutFrise!=null) {
 		    		try {
 		    			chDebut = getDate(dateDebutFrise);
@@ -233,7 +239,7 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 							    	Chronologie newChrono = new Chronologie(chNom, evts, chDebut, chFin, chPas, chSave);
 							    	writeFile(chSave,newChrono.toString());
 						    	}else {
-						    		System.out.println("Veuillez entrer une date valide (ultérieure à "+dateDebutFrise+")");
+						    		System.out.println("Veuillez entrer une date valide (ultÃ©rieure Ã  "+dateDebutFrise+")");
 						    		return;
 						    	}
 						    	return;
@@ -266,17 +272,15 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 		}
 		
 		if(e.getActionCommand()=="help") {
-			File htmlFile = new File("doc/index.html");
-			try {
-				Desktop.getDesktop().browse(htmlFile.toURI());
 				try {
 					Desktop.getDesktop().browse(new URI("https://docs.google.com/document/d/1mFf_xIRFem01dspR9UxfmbgqGDqfJzQeAnC5XE8asGI/edit"));
+				} catch (IOException e1) {
+					e1.printStackTrace();
 				} catch (URISyntaxException e1) {
 					e1.printStackTrace();
 				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+
+
 		}
 	}
 }

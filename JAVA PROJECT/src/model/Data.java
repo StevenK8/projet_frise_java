@@ -1,5 +1,5 @@
 package model;
 
 public interface Data {
-	public final String[] ITEMS = {"Affichage","Nouvel événement"};
+	public final String[] ITEMS = {"Affichage","Nouvel Ã©vÃ©nement"};
 }
