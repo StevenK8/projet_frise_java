@@ -36,9 +36,8 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
-        
         //Creation
-        JMenu creation = new JMenu("Cr√©ation");
+        JMenu creation = new JMenu("CrÈation");
         JMenu nouveau = new JMenu("Nouveau");
         JMenuItem newEvt = new JMenuItem(ITEMS[1],'N');
         JMenuItem newFrise = new JMenuItem("Nouvelle Frise",'F');
@@ -198,10 +197,6 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 				setContentPane(contentPane);
 				pack();
 			}
-			else if (choix == null){
-					System.out.println("Veuillez choisir un fichier de sauvegarde");
-					System.exit(0);
-			}
 		}
 		else if (e.getActionCommand() == ITEMS[0]) {
 			contentPane.setDiapo(ITEMS[0]);
@@ -209,16 +204,15 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 		else if (e.getActionCommand() == ITEMS[1]) {
 			contentPane.setDiapo(ITEMS[1]);
 		}
-		
 		if(e.getActionCommand()=="newFrise") {
 			JFrame frame = new JFrame("Nom de la frise");
 
-		    String nomFrise = JOptionPane.showInputDialog(frame, "Quel nom voulez vous donner √† cette frise?");
+		    String nomFrise = JOptionPane.showInputDialog(frame, "Quel nom voulez vous donner ‡ cette frise?");
 		    if(nomFrise!=null) {
 		    	chNom=nomFrise;
 		    	chSave="save"+nomFrise;
 		    	frame.setTitle("Date de d√©but de la frise");
-		    	String dateDebutFrise = JOptionPane.showInputDialog(frame, "Veuillez entrer la date de d√©but de la frise sous la forme 'JJ/MM/AAAA'");
+		    	String dateDebutFrise = JOptionPane.showInputDialog(frame, "Veuillez entrer la date de dÈbut de la frise sous la forme 'JJ/MM/AAAA'");
 		    	if(dateDebutFrise!=null) {
 		    		try {
 		    			chDebut = getDate(dateDebutFrise);
@@ -238,7 +232,7 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 							    	Chronologie newChrono = new Chronologie(chNom, evts, chDebut, chFin, chPas, chSave);
 							    	writeFile(chSave,newChrono.toString());
 						    	}else {
-						    		System.out.println("Veuillez entrer une date valide (ult√©rieure √† "+dateDebutFrise+")");
+						    		System.out.println("Veuillez entrer une date valide (ultÈrieure ‡ "+dateDebutFrise+")");
 						    		return;
 						    	}
 						    	return;
@@ -262,7 +256,6 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 		    }
 		    return;
 		}
-		
 		if(e.getActionCommand()=="settings") {
 			System.out.println("settings");
 		}
