@@ -53,6 +53,7 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
         save.setActionCommand("save");
         newEvt.setAccelerator(KeyStroke.getKeyStroke('N', java.awt.Event.CTRL_MASK));
         newFrise.setAccelerator(KeyStroke.getKeyStroke('F', java.awt.Event.CTRL_MASK));
+        open.setAccelerator(KeyStroke.getKeyStroke('O', java.awt.Event.CTRL_MASK));
         save.setAccelerator(KeyStroke.getKeyStroke('S', java.awt.Event.CTRL_MASK));
         creation.add(nouveau);
         nouveau.add(newEvt);
@@ -76,10 +77,10 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
         
         //Aide
         JMenu aide = new JMenu("?");
-        JMenuItem help = new JMenuItem("Afficher l'aide",'A');
+        JMenuItem help = new JMenuItem("Afficher l'aide",'H');
         help.addActionListener(this);
         help.setActionCommand("help");
-        help.setAccelerator(KeyStroke.getKeyStroke('A', java.awt.Event.CTRL_MASK));
+        help.setAccelerator(KeyStroke.getKeyStroke('H', java.awt.Event.CTRL_MASK));
         aide.add(help);
         
         open.doClick(); // Appelle l'action ouvrir un fichier: "open"
@@ -211,7 +212,7 @@ public class FenetreMere extends JFrame implements ActionListener,Data {
 		    if(nomFrise!=null) {
 		    	chNom=nomFrise;
 		    	chSave="save"+nomFrise;
-		    	frame.setTitle("Date de dÃ©but de la frise");
+		    	frame.setTitle("Date de début de la frise");
 		    	String dateDebutFrise = JOptionPane.showInputDialog(frame, "Veuillez entrer la date de début de la frise sous la forme 'JJ/MM/AAAA'");
 		    	if(dateDebutFrise!=null) {
 		    		try {
